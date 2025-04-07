@@ -2,6 +2,31 @@
  Prédiction des Arrêts de  Protection d’un Cobot fait par Bouzidi Safa &amp; Khalfa Youssef
 
 
+
+
+
+### 🧠 **Méthodologie Adoptée**
+
+Le projet consiste à prédire les défaillances d’équipements industriels à partir de données issues de capteurs. Voici les étapes suivies :
+
+---
+
+#### 🔧 **Prétraitement des données**
+- Suppression des valeurs manquantes  
+- Normalisation des features  
+- Construction de séquences temporelles (fenêtre glissante de 10 pas de temps)  
+
+#### 🗂️ **Préparation du dataset**
+- Création des labels binaires (0 : pas de panne, 1 : panne)  
+- Séparation en ensembles d’entraînement, de validation et de test  
+
+#### 🧪 **Développement du modèle**
+- Modèles LSTM pour la détection des anomalies ou des pannes  
+- Architecture adaptée aux séries temporelles multivariées  
+
+#### 📊 **Entraînement et évaluation**
+- Grid search sur les hyperparamètres  
+
 <br>
 
 <span style="color:blue; font-weight:bold; font-size:20px;">Méthodologie Adoptée</span>  
