@@ -2,34 +2,38 @@
  Prédiction des Arrêts de  Protection d’un Cobot fait par Bouzidi Safa &amp; Khalfa Youssef
 
 
-Méthodologie Adoptée
+<br>
+
+<span style="color:blue; font-weight:bold; font-size:20px;">Méthodologie Adoptée</span>  
 Le projet consiste à prédire les défaillances d'équipements industriels à partir de données issues de capteurs. Voici les étapes suivies :
 
-Prétraitement des données :
+<br>
 
-Suppression des valeurs manquantes
 
-Normalisation des features
 
-Construction de séquences temporelles (fenêtre glissante de 10 pas de temps)
+<span style="color:red; font-weight:bold; font-size:16px;">Prétraitement des données :</span>  
+- Suppression des valeurs manquantes  
+- Normalisation des features  
+- Construction de séquences temporelles (fenêtre glissante de 10 pas de temps) 
 
-Préparation du dataset :
+<br>
 
-Création des labels binaires (0 : pas de panne, 1 : panne)
+<span style="color:red; font-weight:bold; font-size:16px;">Préparation du dataset :</span>  
+- Création des labels binaires (0 : pas de panne, 1 : panne)  
+- Séparation en ensembles d’entraînement, de validation et de test  
 
-Séparation en ensembles d’entraînement, de validation et de test
+<br>
 
-Développement du modèle :
+<span style="color:red; font-weight:bold; font-size:16px;">Développement du modèle :</span>  
+- Modèles LSTM pour la détection des anomalies ou des pannes  
+- Architecture adaptée aux séries temporelles multivariées  
 
-Modèles LSTM pour la détection des anomalies ou des pannes
 
-Architecture adaptée aux séries temporelles multivariées
+<br>
 
-Entraînement et évaluation :
-
-Grid search sur les hyperparamètres
-
-Évaluation via des métriques classiques : précision, rappel, F1-score
+<span style="color:red; font-weight:bold; font-size:16px;">Entraînement et évaluation :</span>  
+- Grid search sur les hyperparamètres  
+- Évaluation via des métriques classiques : précision, rappel, F1-score
 
 Comparaison des modèles et des hyperparamètres
 
