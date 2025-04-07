@@ -43,23 +43,27 @@ Comparaison des modèles et des hyperparamètres
 
 
 🚀 Instructions pour exécuter l’API et utiliser le modèle
+---
+
 📦 Installation des dépendances
-bash
-Copier
-Modifier
+---
+
 pip install -r requirements.txt
+
+---
+
 ▶️ Lancement de l’API (FastAPI)
-bash
-Copier
-Modifier
+---
+
 uvicorn main:app --reload
+---
+
 🌐 Interface interactive
 http://127.0.0.1:8000/docs
+---
 
 📤 Exemple de requête JSON pour prédiction
-json
-Copier
-Modifier
+
 {
   "sequence": [[0.1, 0.2, ..., 0.9], ..., [0.3, 0.4, ..., 1.0]]
 }
