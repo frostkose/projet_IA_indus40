@@ -1,58 +1,55 @@
 from flask import Flask, request, jsonify
-from joblib import dump, load
-from sklearn.preprocessing import MinMaxScaler
-import pandas as pd
+from joblib import load
+import tensorflow
+from tensorflow.keras.models import load_model
 import numpy as np
+
 app = Flask(__name__)
 
-# chargement des modèles
-RF_model = load('../model/random_forest_model.pkl')
-LSTM_model=load('../model/_forth_model.pkl')
-scaler = load('../model/scaler.pkl')  # Modèle de normalisation
-#pca_model = load('../model/pca.pkl')  # Modèle PCA
+# Chargement des modèles
+scaler = load('scaler.pkl')
+lstm_model = load_model('model1.pkl')  # LSTM .h5 ou .pkl selon ton format
+decision_tree_model = load('decision_tree_model.pkl')
+random_forest_model = load('random_forest_model.pkl')
+logistic_model = load('logistic_regression_model.pkl')
 
-@app.route('/predictRF',methods=['POST'])
-def predict():
-
+@app.route('/predict/lstm', methods=['POST'])
+def predict_lstm():
     data = request.get_json()
-    # Convertir le modèle en un array puis le normaliser puisque l'apprentissage a commencé par la normalisation
-    input_scaled = scaler.transform(np.array(data['input']).reshape(1, -1))
-    #reduire la dimensionalité
-    #input_pca = pca_model.transform(input_scaled)
-    #input_data = normalisation(np.array(data['input']).reshape(1,-1))
-    # faire la prédiction
-    #prediction = model.predict(input_pca)
-    prediction = RF_model.predict(input_scaled)
-    return jsonify({'prediction': int(prediction)})
+    input_array = np.array(data['input']).reshape(10, -1)
+    input_scaled = scaler.transform(input_array)
+    input_reshaped = input_scaled.reshape(1, 10, -1)
+    prediction = lstm_model.predict(input_reshaped)
+    predicted_class = int(np.argmax(prediction[0]))
+    return jsonify({'model': 'LSTM', 'prediction': predicted_class})
 
-@app.route('/predictLSTTM',methods=['POST'])
-def predict():
-
+@app.route('/predict/tree', methods=['POST'])
+def predict_tree():
     data = request.get_json()
-    # Convertir le modèle en un array puis le normaliser puisque l'apprentissage a commencé par la normalisation
-    input_scaled = scaler.transform(np.array(data['input']).reshape(1, -1))
-    #reduire la dimensionalité
-    #input_pca = pca_model.transform(input_scaled)
-    #input_data = normalisation(np.array(data['input']).reshape(1,-1))
-    # faire la prédiction
-    #prediction = model.predict(input_pca)
-    prediction = LSTM_model.predict(input_scaled)
-    return jsonify({'prediction': int(prediction)})
+    input_array = np.array(data['input']).reshape(1, -1)
+    input_scaled = scaler.transform(input_array)
+    prediction = decision_tree_model.predict(input_scaled)
+    return jsonify({'model': 'Decision Tree', 'prediction': int(prediction[0])})
 
+@app.route('/predict/rf', methods=['POST'])
+def predict_rf():
+    data = request.get_json()
+    input_array = np.array(data['input']).reshape(1, -1)
+    input_scaled = scaler.transform(input_array)
+    prediction = random_forest_model.predict(input_scaled)
+    return jsonify({'model': 'Random Forest', 'prediction': int(prediction[0])})
 
+@app.route('/predict/logistic', methods=['POST'])
+def predict_logistic():
+    data = request.get_json()
+    input_array = np.array(data['input']).reshape(1, -1)
+    input_scaled = scaler.transform(input_array)
+    prediction = logistic_model.predict(input_scaled)
+    return jsonify({'model': 'Logistic Regression', 'prediction': int(prediction[0])})
 
-
-@app.route('/test',methods=['GET'])
-def bonjour():
-    print ("hello")
-    return "bonjour"
-
-
+@app.route('/test', methods=['GET'])
+def test():
+    return "API opérationnelle 🚀"
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000, debug=True)
-    
-    
-
-    
-    
