@@ -27,38 +27,7 @@ Le projet consiste à prédire les défaillances d’équipements industriels à
 #### 📊 **Entraînement et évaluation**
 - Grid search sur les hyperparamètres  
 
-<br>
 
-<span style="color:blue; font-weight:bold; font-size:20px;">Méthodologie Adoptée</span>  
-Le projet consiste à prédire les défaillances d'équipements industriels à partir de données issues de capteurs. Voici les étapes suivies :
-
-<br>
-
-
-
-<span style="color:red; font-weight:bold; font-size:16px;">Prétraitement des données :</span>  
-- Suppression des valeurs manquantes  
-- Normalisation des features  
-- Construction de séquences temporelles (fenêtre glissante de 10 pas de temps) 
-
-<br>
-
-<span style="color:red; font-weight:bold; font-size:16px;">Préparation du dataset :</span>  
-- Création des labels binaires (0 : pas de panne, 1 : panne)  
-- Séparation en ensembles d’entraînement, de validation et de test  
-
-<br>
-
-<span style="color:red; font-weight:bold; font-size:16px;">Développement du modèle :</span>  
-- Modèles LSTM pour la détection des anomalies ou des pannes  
-- Architecture adaptée aux séries temporelles multivariées  
-
-
-<br>
-
-<span style="color:red; font-weight:bold; font-size:16px;">Entraînement et évaluation :</span>  
-- Grid search sur les hyperparamètres  
-- Évaluation via des métriques classiques : précision, rappel, F1-score
 
 Comparaison des modèles et des hyperparamètres
 
@@ -71,3 +40,26 @@ Comparaison des modèles et des hyperparamètres
 | **Arbre de Décision**        | Classique          | GridSearchCV sur profondeur, split | –      | –          | 
 | **Random Forest**            | Classique          | 100 arbres                         | –      | –          | 
 | **Régression Logistique**    | Classique          | max_iter=1000                      | –      | –          | 
+
+
+🚀 Instructions pour exécuter l’API et utiliser le modèle
+📦 Installation des dépendances
+bash
+Copier
+Modifier
+pip install -r requirements.txt
+▶️ Lancement de l’API (FastAPI)
+bash
+Copier
+Modifier
+uvicorn main:app --reload
+🌐 Interface interactive
+http://127.0.0.1:8000/docs
+
+📤 Exemple de requête JSON pour prédiction
+json
+Copier
+Modifier
+{
+  "sequence": [[0.1, 0.2, ..., 0.9], ..., [0.3, 0.4, ..., 1.0]]
+}
