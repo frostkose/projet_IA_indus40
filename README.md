@@ -58,12 +58,3 @@ pip install -r requirements.txt
 uvicorn main:app --reload
 ---
 
-🌐 Interface interactive
-http://127.0.0.1:8000/docs
----
-
-📤 Exemple de requête JSON pour prédiction
-
-{
-  "sequence": [[0.1, 0.2, ..., 0.9], ..., [0.3, 0.4, ..., 1.0]]
-}
