@@ -7,7 +7,7 @@ import pandas as pd
 
 app = Flask(__name__)
 
-# Chargement des modèles
+# Chargement des modèles 
 scaler = load("../model/scaler.pkl")
 lstm_model = load('../model/model1.pkl') 
 #decision_tree_model = load('../model/decision_tree_model.pkl')
