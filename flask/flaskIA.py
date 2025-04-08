@@ -7,7 +7,7 @@ import numpy as np
 app = Flask(__name__)
 
 # Chargement des modèles
-scaler = load("C:/Users/Lenovo/Documents/GitHub/projet-IA-indus4.0/model/scaler.pkl")
+scaler = load("C:/Users/Lenovo/Documents/GitHub/projet_IA_indus40/model/scaler.pkl")
 lstm_model = load_model('../model/model1.pkl')  # LSTM .h5 ou .pkl selon ton format
 decision_tree_model = load('../model/decision_tree_model.pkl')
 random_forest_model = load('../model/random_forest_model.pkl')
