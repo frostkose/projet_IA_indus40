@@ -22,7 +22,7 @@ def predict_lstm():
     #input_reshaped = input_scaled.reshape(1, 10, -1)
     prediction = lstm_model.predict(input_scaled)
     predicted_class = int(np.argmax(prediction[0]))
-    return jsonify({'model': 'LSTM', 'prediction': predicted_class})
+    return jsonify({'model': 'LSTM', 'prediction': bool(predicted_class)})
 
 
 @app.route('/predict/rf', methods=['POST'])
