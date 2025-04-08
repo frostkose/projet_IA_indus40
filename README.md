@@ -44,14 +44,11 @@ Comparaison des modèles et des hyperparamètres
 
 🚀 Instructions pour exécuter l’API et utiliser le modèle
 ---
-
-📦 Installation des dépendances
----
-
-pip install -r requirements.txt
-
----
-
+Docker doit etre installé 
+Construire l'image Docker Depuis la racine du projet (projet/), exécutez :
+docker build -t projet_IA_indus40 -f docker/Dockerfile .
+puis:
+docker run -p 5000:5000 --name projet_IA_indus40-container projet_IA_indus40
 ▶️ Lancement de l’API (FastAPI)
 ---
 
