@@ -31,7 +31,8 @@ def predict_rf():
     input_array = np.array(data['input']).reshape(1, -1)
     input_scaled = scaler.transform(input_array)
     prediction = random_forest_model.predict(input_scaled)
-    return jsonify({'model': 'Random Forest', 'prediction': int(prediction[0])})
+    predicted_class = int(np.argmax(prediction[0]))
+    return jsonify({'model': 'Random Forest', 'prediction': predicted_class})
  
 
 
