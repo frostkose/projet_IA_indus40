@@ -32,7 +32,7 @@ def predict_rf():
     input_scaled = scaler.transform(input_array)
     prediction = random_forest_model.predict(input_scaled)
     return jsonify({'model': 'Random Forest', 'prediction': int(prediction[0])})
-
+ 
 
 
 @app.route('/test', methods=['GET'])
