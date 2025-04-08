@@ -7,11 +7,11 @@ import numpy as np
 app = Flask(__name__)
 
 # Chargement des modèles
-scaler = load('scaler.pkl')
-lstm_model = load_model('model1.pkl')  # LSTM .h5 ou .pkl selon ton format
-decision_tree_model = load('decision_tree_model.pkl')
-random_forest_model = load('random_forest_model.pkl')
-logistic_model = load('logistic_regression_model.pkl')
+scaler = load("C:/Users/Lenovo/Documents/GitHub/projet-IA-indus4.0/model/scaler.pkl")
+lstm_model = load_model('../model/model1.pkl')  # LSTM .h5 ou .pkl selon ton format
+decision_tree_model = load('../model/decision_tree_model.pkl')
+random_forest_model = load('../model/random_forest_model.pkl')
+logistic_model = load('../model/logistic_regression_model.pkl')
 
 @app.route('/predict/lstm', methods=['POST'])
 def predict_lstm():
