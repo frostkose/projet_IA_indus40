@@ -1,17 +1,18 @@
 from flask import Flask, request, jsonify
-from joblib import load
-import tensorflow
+from joblib import dump, load
+#import sickit-learn
 from tensorflow.keras.models import load_model
 import numpy as np
+import pandas as pd
 
 app = Flask(__name__)
 
 # Chargement des modèles
-scaler = load("C:/Users/Lenovo/Documents/GitHub/projet_IA_indus40/model/scaler.pkl")
-lstm_model = load_model('../model/model1.pkl')  # LSTM .h5 ou .pkl selon ton format
-decision_tree_model = load('../model/decision_tree_model.pkl')
+scaler = load("../model/scaler.pkl")
+lstm_model = load('../model/model1.pkl') 
+#decision_tree_model = load('../model/decision_tree_model.pkl')
 random_forest_model = load('../model/random_forest_model.pkl')
-logistic_model = load('../model/logistic_regression_model.pkl')
+#logistic_model = load('../model/logistic_regression_model.pkl')
 
 @app.route('/predict/lstm', methods=['POST'])
 def predict_lstm():
@@ -23,13 +24,6 @@ def predict_lstm():
     predicted_class = int(np.argmax(prediction[0]))
     return jsonify({'model': 'LSTM', 'prediction': predicted_class})
 
-@app.route('/predict/tree', methods=['POST'])
-def predict_tree():
-    data = request.get_json()
-    input_array = np.array(data['input']).reshape(1, -1)
-    input_scaled = scaler.transform(input_array)
-    prediction = decision_tree_model.predict(input_scaled)
-    return jsonify({'model': 'Decision Tree', 'prediction': int(prediction[0])})
 
 @app.route('/predict/rf', methods=['POST'])
 def predict_rf():
@@ -39,13 +33,7 @@ def predict_rf():
     prediction = random_forest_model.predict(input_scaled)
     return jsonify({'model': 'Random Forest', 'prediction': int(prediction[0])})
 
-@app.route('/predict/logistic', methods=['POST'])
-def predict_logistic():
-    data = request.get_json()
-    input_array = np.array(data['input']).reshape(1, -1)
-    input_scaled = scaler.transform(input_array)
-    prediction = logistic_model.predict(input_scaled)
-    return jsonify({'model': 'Logistic Regression', 'prediction': int(prediction[0])})
+
 
 @app.route('/test', methods=['GET'])
 def test():
