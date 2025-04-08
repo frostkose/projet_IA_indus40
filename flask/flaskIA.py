@@ -17,10 +17,10 @@ random_forest_model = load('../model/random_forest_model.pkl')
 @app.route('/predict/lstm', methods=['POST'])
 def predict_lstm():
     data = request.get_json()
-    input_array = np.array(data['input']).reshape(10, -1)
+    input_array = np.array(data['input']).reshape(1, -1)
     input_scaled = scaler.transform(input_array)
-    input_reshaped = input_scaled.reshape(1, 10, -1)
-    prediction = lstm_model.predict(input_reshaped)
+    #input_reshaped = input_scaled.reshape(1, 10, -1)
+    prediction = lstm_model.predict(input_scaled)
     predicted_class = int(np.argmax(prediction[0]))
     return jsonify({'model': 'LSTM', 'prediction': predicted_class})
 
